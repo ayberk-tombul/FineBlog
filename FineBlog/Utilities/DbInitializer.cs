@@ -21,15 +21,15 @@ namespace FineBlog.Utilities
         {
             if(!_roleManager.RoleExistsAsync(WebsiteRoles.WebsiteAdmin).GetAwaiter().GetResult())
             {
-                _roleManager.CreateAsync(new IdentityRole(WebsiteRoles.WebsiteAdmin)).GetAwaiter();
-                _roleManager.CreateAsync(new IdentityRole(WebsiteRoles.WebsiteAuthor)).GetAwaiter();
+                _roleManager.CreateAsync(new IdentityRole(WebsiteRoles.WebsiteAdmin)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(WebsiteRoles.WebsiteAuthor)).GetAwaiter().GetResult();
                 _userManager.CreateAsync(new ApplicationUser()
                 {
                     UserName = "admin@gmail.com",
                     Email = "admin@gmail.com",
                     Firstname = "Super",
                     Lastname = "Admin"
-                },"Admin@0011").GetAwaiter();
+                },"Admin@0011").Wait();
 
                 var appUser = _context.ApplicationUsers.FirstOrDefault(x => x.Email == "admin@gmail.com");
                 if (appUser!=null)
