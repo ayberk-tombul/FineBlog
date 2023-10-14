@@ -1,0 +1,54 @@
+﻿@model FineBlog.ViewModels.RegisterVM
+
+
+@{
+    ViewData["Title"] = "Register User";
+}
+
+
+<div class="container-fluid">
+    <a class="btn btn-primary mb-1" asp-action="Index" asp-controller="User">Geri Dön</a>
+    <div class="card">
+        <div class="card-header bg-primary">
+            <h4 class="card-title text-white">
+                Yeni Kayıt Formu
+            </h4>
+        </div>
+        <div class="card-body">
+           <form asp-action="Register" asp-controller="User" asp-area="Admin">
+               <div class="mb-2">
+                   <label>Adınız</label>
+                   <input type="text" asp-for="FirstName" class="form-control" />
+                   <span asp-validation-for="FirstName" class="text-danger"></span>
+               </div>
+                <div class="mb-2">
+                    <label>Soyadınız</label>
+                    <input type="text" asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label>E-posta</label>
+                    <input type="text" asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label>Kullanıcı Adı</label>
+                    <input type="text" asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label>Şifre</label>
+                    <input type="password" asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <input type="checkbox" class="custom-checkbox" asp-for="IsAdmin" />
+                    <label>Bu kişi Admin mi?</label>
+                </div>
+                <div class="mb-2">
+                    <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+                </div>
+           </form>
+        </div>
+    </div>
+</div>
