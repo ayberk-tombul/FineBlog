@@ -20,6 +20,8 @@
                         <th>İsim</th>
                         <th>Soyad</th>
                         <th>Kullanıcı Adı</th>
+                        <th>E-Posta</th>
+                        <th>Role</th>
                         <th>Aksiyon</th>
                     </tr>
                 </thead>
@@ -30,8 +32,10 @@
                             <td>@user.FirstName</td>
                             <td>@user.LastName</td>
                             <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>@user.Role</td>
                             <td>
-                                <a class="btn btn-secondary">Forget Password</a>
+                                <a class="btn btn-info" asp-action="ResetPassword" asp-controller="User" asp-route-id="@user.Id">Şifre Yenile</a>
                             </td>
                         </tr>
                     }
