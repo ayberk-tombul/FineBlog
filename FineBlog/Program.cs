@@ -30,6 +30,7 @@ internal class Program
         builder.Services.ConfigureApplicationCookie(option =>
         {
             option.LoginPath = "/login";
+            option.AccessDeniedPath="/AccessDenied";
         });
 
         var app = builder.Build();
