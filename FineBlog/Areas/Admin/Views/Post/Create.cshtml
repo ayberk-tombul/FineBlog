@@ -1,0 +1,57 @@
+﻿@model FineBlog.ViewModels.CreatePostVM
+
+
+@{
+    ViewData["Title"] = "Create Post";
+}
+
+
+<div class="container-fluid">
+    <a class="btn btn-primary mb-1" asp-action="Index" asp-controller="Post">Geri Dön</a>
+    <div class="card">
+        <div class="card-header bg-primary">
+            <h4 class="card-title text-white">
+                Yeni Blog
+            </h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Register" asp-controller="User" asp-area="Admin">
+
+                
+                    <div class="col-9">
+                        <div class="mb-2">
+                            <label>Başlık</label>
+                            <input type="text" asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2">
+                            <label>Açıklama</label>
+                            <input type="text" asp-for="ShortDescription" class="form-control" />
+                            <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2">
+                            <label>İçerik</label>
+                            <textarea asp-for="Description" class="form-control" rows="8"></textarea></>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="mb-2">
+                            <img src="~/Thumnails/default_image.png" class="img-fluid" />
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label>Resim</label>
+                        <input type="file" asp-for="Thumbnail" class="custom-file" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+
+                
+                <div class="mb-2">
+                    <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
