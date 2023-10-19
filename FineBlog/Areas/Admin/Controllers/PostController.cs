@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using FineBlog.Data;
 using FineBlog.Models;
+using FineBlog.Utilities;
 using FineBlog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -28,9 +29,32 @@ namespace FineBlog.Areas.Admin.Controllers
 
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var listOfPosts = new List<Post>();
+            
+            var loggedInUser = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity!.Name);
+            var loggedInUserRole = await _userManager.GetRolesAsync(loggedInUser!);
+            if (loggedInUserRole[0] == WebsiteRoles.WebsiteAdmin)
+            {
+                 listOfPosts = await _context.Posts!.Include(x=>x.ApplicationUser).ToListAsync();
+            }
+            else
+            {
+                listOfPosts = await _context.Posts!.Include(x => x.ApplicationUser).Where(x=>x.ApplicationUser!.Id == loggedInUser!.Id).ToListAsync();
+            }
+
+            var listOfPostVM = listOfPosts.Select(x => new PostVM()
+            {
+                Id = x.Id,
+                Title = x.Title,
+                CreatedDate = x.CreatedDate,
+                ThumbNailUrl = x.ThumbnailUrl,
+                AuthorName = x.ApplicationUser!.Firstname + " " + x.ApplicationUser.Lastname
+
+            }).ToList();
+            return View(listOfPostVM);
         }
 
         [HttpGet]

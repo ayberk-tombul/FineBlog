@@ -17,7 +17,6 @@
         <div class="card-body">
             <form asp-action="Create" asp-controller="Post" asp-area="Admin" enctype="multipart/form-data">
 
-                
                     <div class="col-9">
                         <div class="mb-2">
                             <label>Başlık</label>
@@ -37,15 +36,14 @@
                     </div>
                     <div class="col-3">
                         <div class="mb-2">
-                            <img src="~/Thumnails/default_image.png" class="img-fluid" />
+                            <img src="~/thumbnails/default_image.png" class="img-fluid" id="thumbnail" />
                         </div>
                     </div>
                     <div class="mb-2">
                         <label>Resim</label>
-                        <input type="file" asp-for="Thumbnail" class="custom-file" />
+                        <input type="file" asp-for="Thumbnail" class="custom-file"/>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
-
 
                 
                 <div class="mb-2">
@@ -55,3 +53,13 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        $(".custom-file") on ("change" , function () {
+            var filename = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            document.getElementById('thumbnail').src = window.URL.createObjectURL(this.files[0])
+        });
+    </script>
+}
