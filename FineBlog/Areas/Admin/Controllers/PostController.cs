@@ -115,7 +115,7 @@ namespace FineBlog.Areas.Admin.Controllers
             if (loggedInUserRole[0] != WebsiteRoles.WebsiteAdmin && loggedInUser!.Id != post.ApplicationUserId)
             {
                 _notification.Error("Yetkili değilsin.");
-                return View();
+                return RedirectToAction("Index");
             }
 
                 var vm = new CreatePostVM()
