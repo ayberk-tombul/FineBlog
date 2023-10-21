@@ -2,7 +2,7 @@
 
 
 @{
-    ViewData["Title"] = "Create Post";
+    ViewData["Title"] = "Edit Post";
 }
 
 
@@ -11,11 +11,13 @@
     <div class="card">
         <div class="card-header bg-primary">
             <h4 class="card-title text-white">
-                Yeni Blog
+                Blog Düzenleme
             </h4>
         </div>
         <div class="card-body">
-            <form asp-action="Create" asp-controller="Post" asp-area="Admin" enctype="multipart/form-data">
+            <form asp-action="Edit" asp-controller="Post" asp-area="Admin" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ThumbnailUrl" />
                 <div class="row">
                     <div class="col-8">
                         <div class="mb-2">
@@ -36,7 +38,17 @@
                     </div>
                     <div class="col-4">
                         <div class="mb-2">
-                            <img src="~/thumbnails/default_image.png" class="img-fluid" id="thumbnail" />
+                            @{
+                                if (Model.ThumbnailUrl == null)
+                                {
+                                    <img src="~/thumbnails/default_image.png" class="img-fluid" id="thumbnail" />
+                                }
+                                else
+                                {
+                                    <img src="~/thumbnails/@Model.ThumbnailUrl" class="img-fluid" id="thumbnail" />
+                                }
+                             }
+                            
                         </div>
                         <div class="mb-2">
                             <label>Resim</label>
@@ -55,7 +67,7 @@
 
 @section Scripts{
     <script>
-        $(".custom-file").on("change" , function () {
+        $(".custom-file").on("change", function () {
             var filename = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(filename);
             document.getElementById('thumbnail').src = window.URL.createObjectURL(this.files[0])

@@ -36,9 +36,9 @@
                         <div class="col-5 text-right  d-flex justify-content-center flex-column">
                             <h4 style="font-size:1rem;" class="fw-bold">@post.AuthorName</h4>
                             <p>
-                                <a class="btn btn-warning">Edit</a>
+                                <a class="btn btn-warning" asp-area="Admin" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id" method="post">Düzenle</a>
                                 <form asp-area="Admin" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" method="post" onsubmit="return confirm('İçeriği silmek istediğinize eminmisiniz?')">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger">Sil</button>
                                 </form>
                             </p>
                         </div>
