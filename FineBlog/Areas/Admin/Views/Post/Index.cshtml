@@ -21,26 +21,26 @@
                         <div class="col-2 d-flex justify-content-center flex-column">
                             @if(post.ThumbNailUrl == null)
                             {
-                                <img class="img-fluid" src="~/thumbnails/default_image.png" style="object-fit:fill; height:100px;">
+                                <img class="img-fluid" src="~/thumbnails/default_image.png" style="object-fit:cover; height:100%; width:100%">
                             }
                             else
                             {
-                                <img class="img-fluid" src="~/thumbnails/@post.ThumbNailUrl" style="object-fit:fill; height:100px;">
+                                <img class="img-fluid" src="~/thumbnails/@post.ThumbNailUrl" style="object-fit:cover; height:100%; width:100%">
                             }
 
                         </div>
                         <div class="col-5 d-flex justify-content-center flex-column">
-                            <h4 style="font-size:1rem;" class="text-primary fw-bold">@post.Title</h4>
+                            <h4 style="font-size:1.5rem; font-weight:bolder;" class="text-primary fw-bold">@post.Title</h4>
                             <p>@post.CreatedDate</p>
                         </div>
                         <div class="col-5 text-right  d-flex justify-content-center flex-column">
                             <h4 style="font-size:1rem;" class="fw-bold">@post.AuthorName</h4>
-                            <p>
+                            <div class="d-flex justify-content-end align-items-center">
                                 <a class="btn btn-warning" asp-area="Admin" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id" method="post">Düzenle</a>
                                 <form asp-area="Admin" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" method="post" onsubmit="return confirm('İçeriği silmek istediğinize eminmisiniz?')">
                                     <button type="submit" class="btn btn-danger">Sil</button>
                                 </form>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>

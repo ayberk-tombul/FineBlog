@@ -1,8 +1,8 @@
-﻿@model FineBlog.ViewModels.CreatePostVM
+﻿@model FineBlog.ViewModels.PageVM
 
 
 @{
-    ViewData["Title"] = "Edit Post";
+    ViewData["Title"] = "About Page";
 }
 
 
@@ -11,11 +11,11 @@
     <div class="card">
         <div class="card-header bg-primary">
             <h4 class="card-title text-white">
-                Blog Düzenleme
+                Hakkında
             </h4>
         </div>
         <div class="card-body">
-            <form asp-action="Edit" asp-controller="Post" asp-area="Admin" enctype="multipart/form-data">
+            <form asp-action="About" asp-controller="Page" asp-area="Admin" enctype="multipart/form-data">
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="ThumbnailUrl" />
                 <div class="row">
@@ -47,8 +47,8 @@
                                 {
                                     <img src="~/thumbnails/@Model.ThumbnailUrl" class="img-fluid" id="thumbnail" />
                                 }
-                             }
-                            
+                            }
+
                         </div>
                         <div class="mb-2">
                             <label>Resim</label>
