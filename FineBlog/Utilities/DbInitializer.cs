@@ -57,7 +57,7 @@ namespace FineBlog.Utilities
                     }
                 };
 
-                _context.Pages!.AddRange(listOfPages);
+                _context.Pages.AddRange(listOfPages);
                 _context.SaveChanges();
 
             }
